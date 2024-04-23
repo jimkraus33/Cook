@@ -1,0 +1,62 @@
+@keyframes grow {
+    from {
+        font-size: 20px;
+    }
+    to {
+        font-size: 80px;
+    }
+}
+
+.ani-title {
+    color: blue;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    animation-name: grow;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+}
+
+
+
+body {
+    background-color: goldenrod;
+}
+
+.form-layout {
+    border-radius: 15px;
+    width: 450px;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: start;
+}
+
+.div-right {
+    display: flex;
+    justify-content: end;
+}
+
+.split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+.split2 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+hr.new {
+    border-top: 1px solid aliceblue;
+}
+
+hr.blu {
+    border-top: 2px solid blue;
+}

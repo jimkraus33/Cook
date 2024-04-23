@@ -1,0 +1,33 @@
+{% extends "recipes/layout.html" %}
+{% load static %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1 class="ani-title">Welcome to Kimmy's Kook Book</h1><br>
+    <div class="centered">
+    <a class="btn btn-dark center " href="{% url 'create' %}">Create Recipe</a><br>
+    </div>
+    <hr class="blu">
+    <br><br><br>
+    
+    <div class="row">
+
+      {% for recipe in recipes %}
+        <div class="col-lg-4">
+            <div class="card bg-dark text-light border-light" style="width: 22rem;">
+                <img src="{{ recipe.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><strong>{{ recipe.name }}</strong></p>                  
+                  <p class="card-text"><small>{{ recipe.description }}</small></p>                  
+                  <hr class="new">
+                  <div class="centered">
+                    <a class="btn btn-light" href="{% url 'view' recipe.id %}">View Recipe</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
