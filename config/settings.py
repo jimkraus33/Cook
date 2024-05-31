@@ -1,5 +1,10 @@
 import os
+from environ import Env
 from pathlib import Path
+
+env = Env()
+Env.read_env()
+ENVIRONMENT = env('ENVIRONMENT', default='production')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,10 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7c&vczu-ahk!x_j(-=q+8x3jml_z(x6$m13(k1dm&y3%oa#wau'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -26,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'admin_honeypot',
 
     # Local Apps
     'accounts',
@@ -34,6 +43,7 @@ INSTALLED_APPS = [
     #3rd Party Apps
     'crispy_bootstrap4',
     'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [
@@ -128,3 +138,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+
+ACCOUNT_USERNAME_BLACKLIST = ['accounts', 'admin', 'profile', 'category', 'post', 'index', 'theboss']
